@@ -1,0 +1,11 @@
+ <br />
+        <br />
+        <button onClick={() => this.handleCount()}>+</button>
+        <button
+          onClick={() => {
+            this.removeChild(this.state.parent, this.state.child_count);
+          }}
+        >
+          X
+        </button>
+        <p>Counter : {this.state.count}</p>
