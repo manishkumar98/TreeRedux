@@ -8,6 +8,10 @@ import { createStore } from "redux";
 import { connect } from "react-redux";
 
 //const createStore=redux.createStore
+const initialState = {
+  counter: 0,
+  list: []
+};
 const INCREMENT = "INCREMENT";
 const ADDELEMENT = "ADDELEMENT";
 const DELETEELEMENT = "DELETEELEMENT";
@@ -17,10 +21,20 @@ function increment() {
     info: "Incrementing counter"
   };
 }
-const initialState = {
-  counter: 0,
-  list: []
-};
+function addElement() {
+  return {
+    type: ADDELEMENT,
+    info: "Adding Element"
+  };
+}
+
+function deleteElement() {
+  return {
+    type: DELETEELEMENT,
+    info: "Deleting Element"
+  };
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT:
@@ -30,10 +44,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         list: [...state.list, action.newItem]
       };
-    case DELETEELEMENT:
+    /* case DELETEELEMENT:
       let index = state.list.findIndex((x) => x.name === state.n);
       return [...state.list.slice(0, index), ...state.list.slice(index + 1)];
-
+      */
     default:
       return state;
   }
@@ -77,4 +91,7 @@ const unsubscribe = store.subscribe(() =>
   console.log("Updated state", store.getState())
 );
 store.dispatch(increment());
+store.dispatch(addElement());
+//store.dispatch(deleteElement());
+
 unsubscribe();
