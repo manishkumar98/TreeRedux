@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
         list: [...state.list, action.newItem]
       };
     case DELETEELEMENT:
-      let index = state.list.findIndex((x) => x.name === n);
+      let index = state.list.findIndex((x) => x.name === state.n);
       return [...state.list.slice(0, index), ...state.list.slice(index + 1)];
 
     default:
